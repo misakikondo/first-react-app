@@ -10,10 +10,14 @@ function App() {
 }
 
 class Clock extends React.Component {
+  refresh(){
+    window.alert('押しました')
+  }
+
   render(){
     this.now = new Date();
     this.time=  `${this.now.getHours()}:${this.now.getMinutes()}:${this.now.getSeconds()}`
-    return <p>{this.time}</p>
+    return <p onClick={this.refresh}>{this.time}</p>
   }
 }
 
