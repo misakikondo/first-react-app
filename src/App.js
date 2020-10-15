@@ -1,47 +1,34 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react'
+//これを書くことで、reactの外部のライブラリからリアクトを引っ張ってくる
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
-function App() {
-  return(
-    <div className="container text-center">
-      <Clock />
+const App = () => (
+  <BrowserRouter>
+  <div>
+    <Route exact path="/" component={Home}/>
+    <Route path="/about" component={About}/>
+    </div>
+    </BrowserRouter>
+)
+//ルーティングをしていきますよと宣言
+//スラッシュはHomeページ
+
+const Home = () => {
+  //Homeページの中身
+  return (
+    <div class="container text-center mt-5">
+      <h1>Welcome</h1>
     </div>
   )
 }
 
-class Clock extends React.Component {
-  constructor(props){ 
-  // Clockが定義された時に呼びだされる
-    super(props);
-    // superクラスでコンポーネントを初期化
-    this.now = new Date();
-    // プロパティーに今の時刻を入れていきます
-
-    this.state = { 
-    // stateに入れたものはreactが監視しているもの
-      time: `${this.now.getHours()}:${this.now.getMinutes()}:${this.now.getSeconds()}`
-    // 今の時刻
-    }
-
-    this.refresh = this.refresh.bind(this);
-    // stateを使うためにはconstructorの中にこの記述が必要
-  }
-  
-  refresh(){ 
-    // クリックが押された時に起こる変化が以下
-    this.now = new Date();
-    // 今の時刻を取得している
-
-    this.setState((state) => ({
-      time: `${this.now.getHours()}:${this.now.getMinutes()}:${this.now.getSeconds()}`
-    // 画面に変化を起こしたい時にsetStateを使い、勝手に書き換えてくれる
-    }));
-  }
-
-  render(){
-    return <p onClick={this.refresh}>{this.state.time}</p>
-    // jsx内にイベントを定義、refreshを割り当てる（もう一度今の時刻を表示する）
-  }
+const About = () => {
+  //Aboutページの中身
+  return (
+    <div class="container text-center mt-5">
+      <h1>About</h1>
+    </div>
+  )
 }
 
-export default App;
+export default App
