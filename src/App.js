@@ -8,11 +8,12 @@ const App = () => (
     <Route exact path="/" component={Home}/>
     <Route path="/about" component={About}/>
     <Route path="/blog/:id" component={Blog}/>
+    <Route path="/sum/:num1/:num2" component={Sum}/>
     </div>
     </BrowserRouter>
 )
 //ルーティングをしていきますよと宣言
-//スラッシュはHomeページ
+//num1 num2は数字（階層を示している）
 
 const Home = () => {
   //Homeページの中身
@@ -43,6 +44,20 @@ const Blog = props => {
       <p>{ id }番目の記事です</p>
     </div>
   )
+}
+
+const Sum = props => {
+  const { num1, num2 } = props.match.params
+
+  // propsとパラムスとがマッチしたら
+
+  return (
+    <div>
+      <p>{ num1 } + { num2 } = {parseInt(num1) + parseInt(num2)}</p>
+      <p>難しいよーーー</p>
+    </div>
+  )
+  //parseIntがないと、num1num2が文字列にならない
 }
 
 export default App
